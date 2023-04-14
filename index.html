@@ -1,12 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Challenge ONE Alura</title>
 </head>
+
 <body>
-    
+
+    <label for="ingresoPalabra">Ingresa la palabra</label>
+    <input type="text" name="" id="ingresoPalabra">
+    <br>
+    <button>Enviar</button>
+
+    <script>
+        let inputTexto = document.querySelector("input");
+
+        let button = document.querySelector("button");
+
+
+
+
+
+
+
+        function codificar() {
+            //Traemos la palabra
+            let palabra = inputTexto.value;
+            //Convertimos el valor ingresado en un array 
+            let conversion = palabra.split("");
+            //console.log(conversion);
+
+            for (let index = 0; index <= conversion.length; index++) {                
+                if (conversion[index] == 'a') { 
+                    conversion[index] = "ai";                                                       
+                } if (conversion[index] == "e") {
+                    conversion[index] = "enter"; 
+                } if (conversion[index] == "i") {
+                    conversion[index] = "imes";                    
+                } if (conversion[index] == "o") {
+                    conversion[index] = "ober";                    
+                } if (conversion[index] == "u") {
+                    conversion[index] = "ufat";                     
+                }    
+            }          
+            conversion = conversion.join(""); 
+            
+            decodificar(conversion);
+        }
+
+        function decodificar(conversion) {
+            console.log(conversion)
+            
+
+            
+        }
+
+
+
+
+        
+
+        button.onclick = codificar;
+
+    </script>
+
 </body>
+
 </html>
