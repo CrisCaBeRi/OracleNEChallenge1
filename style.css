@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
+/* light 300  400 600 */
+:root{
+    --mainFont:'Open Sans', sans-serif;      
+    --primaryColor: #0a121e;
+    --secondaryColor: #132537;
+    --thirdColor: #45646b;
+    --fourthColor: #91b4b9;
+    --animationColor: #21252c;
+  }
+header{    
+    display: flex;    
+    align-items: center; 
+    padding: 30px;
+}
+#logo-img {
+    width: 100px;
+    height: 100px;  
+    border-radius: 50px;  
+    margin-right: 20px;
+}
+.text-header h1 {
+    font-size:30px;
+    font-family: var(--mainFont);
+    font-weight: 600; 
+}
+.text-header p {
+    margin-top: 5px;
+    margin-left: 20px;
+    font-size: 20px;
+    font-family: var(--mainFont);
+    font-weight: 300;
+    color: grey;
+}
+
+section {
+    margin-left: 100px;
+}
+#ingresoPalabra {
+    height: 70vh;
+    width: 50vw;    
+}
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    width: 500px;
+}
+
+aside {
+    float: right;
+    position: absolute;
+    top: 20%;
+    left:70%;
+}

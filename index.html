@@ -5,100 +5,113 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
     <title>Challenge ONE Alura</title>
 </head>
 
 <body>
 
-    <!-- <label for="ingresoPalabra">Ingresa la palabra</label> -->
-    <input type="text" name="" id="ingresoPalabra" placeholder="Ingresa el texto aquí">
-    <br>
-    <button id="encriptar">Encriptar</button>
-    <button id="desencriptar">Desencriptar</button>
+    <header>
+        <img id="logo-img" src="./Assets/aluraLogo.png" alt="logo">
+        <div class="text-header">
+            <h1>Challenge ONE Principiante en programación</h1>
+            <p>Sprint 01: Construye un encriptador de texto con Javascript</p>
+        </div>
+    </header>
 
-    <br><br><br><br><br>
+    <section>
+        <input type="text" name="" id="ingresoPalabra" placeholder="Ingresa el texto aquí">
+        <br>
+        <p>Ingresa solo texto en minúsculas</p>
+        <div class="buttons">
+            <button id="encriptar">Encriptar</button>
+            <button id="desencriptar">Desencriptar</button>
+        </div>
+    </section>
 
-    <input type="text" id="palabraConvertida" placeholder="No hay nada por aqui">
+    <aside>
+        <input type="text" id="palabraConvertida" placeholder="No hay nada por aqui">
+    </aside>
+
+
+
 
     <script>
         //donde se ingresa la palabra
         let inputTexto = document.querySelector("input");
 
-        let buttonEncriptar = document.getElementById("encriptar"); 
-        let buttonDesencriptar = document.getElementById("desencriptar");  
-        
+        let buttonEncriptar = document.getElementById("encriptar");
+        let buttonDesencriptar = document.getElementById("desencriptar");
+
         //Input que almacena la plabra convertida 
-        let textoEncriptado = document.getElementById("palabraConvertida"); 
+        let textoEncriptado = document.getElementById("palabraConvertida");
 
 
-        buttonEncriptar.onclick = codificar; 
+        buttonEncriptar.onclick = codificar;
 
-        buttonDesencriptar.onclick = desencriptar; 
+        buttonDesencriptar.onclick = desencriptar;
 
 
         function desencriptar() {
             //Traemos la palabra
-            let palabra = inputTexto.value; 
+            let palabra = inputTexto.value;
             //variable que almacena el texto   
-            let textoCodificado = "";                    
-             
+            let textoCodificado = "";
+
             //Recorremos el array 
-            for (let index = 0; index < palabra.length; index++) {                
-                if (palabra[index] == 'a') { 
-                    textoCodificado = textoCodificado + "a"; 
-                    index = index+2; //¿ por que + 2, recordemos que la vocal encriptada tiene "ai", por ende, al recorrer, sumamos la cantidad de letras que ya fueron codificadas para que pase a las iguiente parte que todavia no está codificada.                                                 
+            for (let index = 0; index < palabra.length; index++) {
+                if (palabra[index] == 'a') {
+                    textoCodificado = textoCodificado + "a";
+                    index = index + 2; //¿ por que + 2, recordemos que la vocal encriptada tiene "ai", por ende, al recorrer, sumamos la cantidad de letras que ya fueron codificadas para que pase a las iguiente parte que todavia no está codificada.                                                 
                 } else if (palabra[index] == "e") {
                     textoCodificado = textoCodificado + "e";
-                    index = index + 4;  
+                    index = index + 4;
                 } else if (palabra[index] == "i") {
-                    textoCodificado = textoCodificado + "i";    
-                    index = index + 3;                 
+                    textoCodificado = textoCodificado + "i";
+                    index = index + 3;
                 } else if (palabra[index] == "o") {
-                    textoCodificado = textoCodificado + "o";  
-                    index = index + 3;                   
+                    textoCodificado = textoCodificado + "o";
+                    index = index + 3;
                 } else if (palabra[index] == "u") {
-                    textoCodificado = textoCodificado + "u"; 
-                    index = index +  3                   
-                }else{
+                    textoCodificado = textoCodificado + "u";
+                    index = index + 3
+                } else {
                     textoCodificado = textoCodificado + palabra[index];
-                }   
-            }            
-            textoEncriptado.value = textoCodificado;            
+                }
+            }
+            textoEncriptado.value = textoCodificado;
             //inputTexto.value = ""; 
             //textoEncriptado.value=""; 
-        }     
-
-        
-        function codificar() {
-            //Traemos la palabra
-            let palabra = inputTexto.value;    
-            let textoCodificado = "";                    
-             
-            //Recorremos el array 
-            for (let index = 0; index < palabra.length; index++) {                
-                if (palabra[index] == 'a') { 
-                    textoCodificado = textoCodificado + "ai";                                                 
-                } else if (palabra[index] == "e") {
-                    textoCodificado = textoCodificado + "enter"; 
-                } else if (palabra[index] == "i") {
-                    textoCodificado = textoCodificado + "imes";                    
-                } else if (palabra[index] == "o") {
-                    textoCodificado = textoCodificado + "ober";                    
-                } else if (palabra[index] == "u") {
-                    textoCodificado = textoCodificado + "ufat";                     
-                }else{
-                    textoCodificado = textoCodificado + palabra[index];
-                }   
-            }             
-            //Quitamos los espacios del array con .join      
-            //texto = conversion.join("");          
-            textoEncriptado.value = textoCodificado;            
-            inputTexto.value = "";                  
         }
 
 
-        
-  
+        function codificar() {
+            //Traemos la palabra
+            let palabra = inputTexto.value;
+            let textoCodificado = "";
+
+            //Recorremos el array 
+            for (let index = 0; index < palabra.length; index++) {
+                if (palabra[index] == 'a') {
+                    textoCodificado = textoCodificado + "ai";
+                } else if (palabra[index] == "e") {
+                    textoCodificado = textoCodificado + "enter";
+                } else if (palabra[index] == "i") {
+                    textoCodificado = textoCodificado + "imes";
+                } else if (palabra[index] == "o") {
+                    textoCodificado = textoCodificado + "ober";
+                } else if (palabra[index] == "u") {
+                    textoCodificado = textoCodificado + "ufat";
+                } else {
+                    textoCodificado = textoCodificado + palabra[index];
+                }
+            }
+            //Quitamos los espacios del array con .join      
+            //texto = conversion.join("");          
+            textoEncriptado.value = textoCodificado;
+            inputTexto.value = "";
+        }
     </script>
 
 </body>
