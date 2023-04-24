@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,9 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Challenge ONE Alura</title>
 </head>
-
 <body>
-
     <header>
         <img id="logo-img" src="./Assets/aluraLogo.png" alt="logo">
         <div class="text-header">
@@ -19,33 +16,23 @@
             <p>Sprint 01: Construye un encriptador de texto con Javascript</p>
         </div>
     </header>
-
     <section>
         <div class="left">
-
-            <textarea name="textarea" id="ingresoPalabra" cols="30" rows="10"
-                placeholder="Ingresa el texto aquí"></textarea>
-
+            <textarea name="textarea" id="ingresoPalabra" placeholder="Ingresa el texto aquí"></textarea>
             <p>Ingresa solo texto en minúsculas, sin caracteres especiales.</p>
-
             <div class="buttons">
                 <button id="encriptar">Encriptar</button>
                 <button id="desencriptar">Desencriptar</button>
             </div>
-
         </div>
-
         <div class="right">
             <img id="imageEmpty" src="./Assets/caja-vacia.png" alt="caja vacía">
             <textarea name="" id="txtCifrado" placeholder="No hay nada por aquí"
                 readonly></textarea>
             <button id="btnCopy">Copy</button>
         </div>
-
     </section>
-
     <script>
-
         //vinculo text area donde se ingresa la palabra 
         let inputTexto = document.getElementById("ingresoPalabra");        
         //Vinculos de los botones
@@ -54,24 +41,23 @@
         //Acciones de los botones
         buttonEncriptar.onclick = codificar;
         buttonDesencriptar.onclick = desencriptar;
-
         function desencriptar() {
-            let palabraEncirptada = inputTexto.value;
+            let palabraEncirptada = inputTexto.value.toLowerCase();
+            //funcion .replace (/valor a ser cambiado/ i para tomar mayusculas o minusculas, g reemplazo global en la cadena "valor por el cual será reemplazado")
             let txtDesencriptar = palabraEncirptada.replace(/enter/igm, "e");
             txtDesencriptar = txtDesencriptar.replace(/ai/igm, "a");
             txtDesencriptar = txtDesencriptar.replace(/imes/igm, "i");
             txtDesencriptar = txtDesencriptar.replace(/ober/igm, "o");
-            txtDesencriptar = txtDesencriptar.replace(/ufat/igm, "u");
-            document.getElementById("imageEmpty").style.display = "none";
+            txtDesencriptar = txtDesencriptar.replace(/ufat/igm, "u");            
             document.getElementById("txtCifrado").innerHTML = txtDesencriptar;
             //Función para validar vacío
             comprobarVacio(txtDesencriptar); 
+            //Borrar el valor almacenado
             inputTexto.value = "";
         }
 
         let btnCopy = document.getElementById("btnCopy");
         btnCopy.onclick = copy;
-
         function copy() {
             let txtCopy = document.getElementById("txtCifrado");
             txtCopy.select();
@@ -79,12 +65,10 @@
             console.log(txtCopy);
             alert("Texto copiado al portapapeles");
         }
-
         function codificar() {
             //Traemos la palabra
-            let palabra = inputTexto.value;
+            let palabra = inputTexto.value.toLowerCase();
             let textoCodificado = "";
-
             //Recorremos el array 
             for (let index = 0; index < palabra.length; index++) {
                 if (palabra[index] == 'a') {
@@ -108,18 +92,15 @@
             //Dejamos el valor de input vacío
             inputTexto.value = "";
         }
-
         function comprobarVacio(a) {
             if (a.length != 0) {
                 document.getElementById("imageEmpty").style.display = "none";  
                 document.getElementById("btnCopy").style.display = "block";              
             }else {
-                document.getElementById("imageEmpty").style.display = "block";                
+                document.getElementById("imageEmpty").style.display = "block"; 
+                document.getElementById("btnCopy").style.display = "none";               
             } 
         }
-
     </script>
-
 </body>
-
 </html>
