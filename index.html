@@ -21,70 +21,64 @@
     </header>
 
     <section>
-        <input type="text" name="" id="ingresoPalabra" placeholder="Ingresa el texto aquí">
-        <br>
-        <p>Ingresa solo texto en minúsculas</p>
-        <div class="buttons">
-            <button id="encriptar">Encriptar</button>
-            <button id="desencriptar">Desencriptar</button>
+        <div class="left">
+
+            <textarea name="textarea" id="ingresoPalabra" cols="30" rows="10"
+                placeholder="Ingresa el texto aquí"></textarea>
+
+            <p>Ingresa solo texto en minúsculas, sin caracteres especiales.</p>
+
+            <div class="buttons">
+                <button id="encriptar">Encriptar</button>
+                <button id="desencriptar">Desencriptar</button>
+            </div>
+
         </div>
+
+        <div class="right">
+            <img id="imageEmpty" src="./Assets/caja-vacia.png" alt="caja vacía">
+            <textarea name="" id="txtCifrado" placeholder="No hay nada por aquí"
+                readonly></textarea>
+            <button id="btnCopy">Copy</button>
+        </div>
+
     </section>
 
-    <aside>
-        <input type="text" id="palabraConvertida" placeholder="No hay nada por aqui">
-    </aside>
-
-
-
-
     <script>
-        //donde se ingresa la palabra
-        let inputTexto = document.querySelector("input");
 
+        //vinculo text area donde se ingresa la palabra 
+        let inputTexto = document.getElementById("ingresoPalabra");        
+        //Vinculos de los botones
         let buttonEncriptar = document.getElementById("encriptar");
         let buttonDesencriptar = document.getElementById("desencriptar");
-
-        //Input que almacena la plabra convertida 
-        let textoEncriptado = document.getElementById("palabraConvertida");
-
-
+        //Acciones de los botones
         buttonEncriptar.onclick = codificar;
-
         buttonDesencriptar.onclick = desencriptar;
 
-
         function desencriptar() {
-            //Traemos la palabra
-            let palabra = inputTexto.value;
-            //variable que almacena el texto   
-            let textoCodificado = "";
-
-            //Recorremos el array 
-            for (let index = 0; index < palabra.length; index++) {
-                if (palabra[index] == 'a') {
-                    textoCodificado = textoCodificado + "a";
-                    index = index + 2; //¿ por que + 2, recordemos que la vocal encriptada tiene "ai", por ende, al recorrer, sumamos la cantidad de letras que ya fueron codificadas para que pase a las iguiente parte que todavia no está codificada.                                                 
-                } else if (palabra[index] == "e") {
-                    textoCodificado = textoCodificado + "e";
-                    index = index + 4;
-                } else if (palabra[index] == "i") {
-                    textoCodificado = textoCodificado + "i";
-                    index = index + 3;
-                } else if (palabra[index] == "o") {
-                    textoCodificado = textoCodificado + "o";
-                    index = index + 3;
-                } else if (palabra[index] == "u") {
-                    textoCodificado = textoCodificado + "u";
-                    index = index + 3
-                } else {
-                    textoCodificado = textoCodificado + palabra[index];
-                }
-            }
-            textoEncriptado.value = textoCodificado;
-            //inputTexto.value = ""; 
-            //textoEncriptado.value=""; 
+            let palabraEncirptada = inputTexto.value;
+            let txtDesencriptar = palabraEncirptada.replace(/enter/igm, "e");
+            txtDesencriptar = txtDesencriptar.replace(/ai/igm, "a");
+            txtDesencriptar = txtDesencriptar.replace(/imes/igm, "i");
+            txtDesencriptar = txtDesencriptar.replace(/ober/igm, "o");
+            txtDesencriptar = txtDesencriptar.replace(/ufat/igm, "u");
+            document.getElementById("imageEmpty").style.display = "none";
+            document.getElementById("txtCifrado").innerHTML = txtDesencriptar;
+            //Función para validar vacío
+            comprobarVacio(txtDesencriptar); 
+            inputTexto.value = "";
         }
 
+        let btnCopy = document.getElementById("btnCopy");
+        btnCopy.onclick = copy;
+
+        function copy() {
+            let txtCopy = document.getElementById("txtCifrado");
+            txtCopy.select();
+            document.execCommand('copy');
+            console.log(txtCopy);
+            alert("Texto copiado al portapapeles");
+        }
 
         function codificar() {
             //Traemos la palabra
@@ -106,12 +100,24 @@
                 } else {
                     textoCodificado = textoCodificado + palabra[index];
                 }
-            }
-            //Quitamos los espacios del array con .join      
-            //texto = conversion.join("");          
-            textoEncriptado.value = textoCodificado;
+            } 
+            //Utilizamos inner porque .value no trae el valor llenado, en cambio con inner se hace la modificación de texto necesaria.
+            document.getElementById("txtCifrado").innerHTML = textoCodificado;           
+            //Función para validar vacío
+            comprobarVacio(textoCodificado); 
+            //Dejamos el valor de input vacío
             inputTexto.value = "";
         }
+
+        function comprobarVacio(a) {
+            if (a.length != 0) {
+                document.getElementById("imageEmpty").style.display = "none";  
+                document.getElementById("btnCopy").style.display = "block";              
+            }else {
+                document.getElementById("imageEmpty").style.display = "block";                
+            } 
+        }
+
     </script>
 
 </body>
